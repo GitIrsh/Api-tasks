@@ -1,0 +1,83 @@
+// const nodemailer = require('nodemailer');
+// const hbs = require('express-handlebars');
+
+// app.engine('handlebars', hbs());
+// app.set('view engine', 'handlebars');
+
+// const mailer = async function(mailOptions){
+
+// let transporter = nodemailer.createTransport({
+//     service : 'gmail',
+//     secure : true,
+//     auth : {
+//         user : process.env.EMAIL,
+//         password : process.env.PASSWORD,
+//         host : 'smtp.gmail.com'
+//     }
+// });
+
+// transporter.use('compile', hbs({
+//     viewEngine : 'express-handlebars',
+//     viewPath : './email/'
+// }));
+
+// let mailOptions = {
+//     from : 'irshuirshath007@gmail.com',
+//     to : 'mrirshathbscit@gmail.com',
+//     subject : 'Sending email using nodemailer',
+//     template : 'email',
+//     context: [
+//     {
+//         title : 'Title',
+//         text : 'lorem ipsum...deolor smit..'
+//     }
+//     ]
+// };
+
+// transport.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//       return console.log(error);
+//     }
+//     console.log('Message sent: %s', info.messageId);
+//   });
+// };
+
+// module.exports = mailer;
+
+for(var i=0;i<arr.length;i++){
+    console.log(arr[i].id,arr[i].title)
+}
+
+
+// store promise to data from url1
+const data1 = fetch(url1)
+    .then(result => result.json())
+    .then(result => result.data);
+
+// store promise to data from url2
+const data2 = fetch(url2)
+    .then(result => result.json())
+    .then(result => result.data);
+
+(async () => {
+  const data = [...await data1, ...await data2];
+  console.log(data); 
+})();
+
+
+
+
+ const url1 = 'https://jsonplaceholder.typicode.com/photos';
+    const url2 = 'https://jsonplaceholder.typicode.com/albums'
+
+    let response = await axios({
+        method: "GET",
+        url: (url1,url2)
+    })
+    console.log(url)
+    const map = new Map();
+    url1.forEach((x) => map.set(x.name, x));
+    const ret = url2
+    .map((x) => ({ ...map.get(x.name), ...x }))
+    .sort((x, y) => x.position - y.position);
+    console.log(ret);
